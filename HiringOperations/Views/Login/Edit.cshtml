@@ -1,0 +1,206 @@
+﻿@using HiringOperations.Models;
+@model AddnewUserModel
+@{
+    ViewData["Title"] = "AdminHome";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="Styles/JobStyle.css" type="text/css" rel="Stylesheet" />
+    <link href="Styles/gridstyles.css" rel="Stylesheet" type="text/css" />
+    <link href="Styles/Calendar.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="ndate/datetimepicker_css.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <style type="text/css">
+        #calendarContainerOverride table {
+            width: 0px;
+            height: 0px;
+        }
+
+            #calendarContainerOverride table tr td {
+                padding: 0;
+                margin: 0;
+            }
+
+        #success_message {
+            display: none;
+        }
+
+        section.py-5 {
+            padding: 48px 0 !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+    <section class="text-black">
+        <div class="container-fluid">
+            <div class="grid-container">
+                <div class="row">
+                    <div class="caption col-sm-5">
+                        <h6 class="page-title font-weight-bold">ADD USER DETAILS</h6>
+                    </div>
+                </div>
+                <hr />
+                 @using (Html.BeginForm())
+                {
+                    
+               @*  @Html.AntiForgeryToken()*@
+               
+                <div id="formgrid" class="formgrid">
+                    <div>
+
+                        <div class="row">
+                            <div class="caption col-sm-6">
+
+                                 
+                                @Html.HiddenFor(model=> model.userid)
+                                
+                                 
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>FirstName</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                           @* <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-list"></i></span>*@
+                                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder="Enter FirstName" })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>LastName</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control",placeholder="Enter SecondName" })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>EmailID</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control",placeholder="Enter Emailid" })
+                                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>Password</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder="Enter Password" })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>Gender</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male-true"  })
+                                            @Html.Label("male-true", "Male")
+                                            @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female-true"})
+                                            @Html.Label("female-true", "Female")
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>DOB</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.DOB, new { @class = "form-control", placeholder="Enter DOB" })
+                                            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>Role</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(model => model.Role, new List<SelectListItem> {
+                                new SelectListItem { Text="--select--",Value="--select--"},
+                                new SelectListItem { Text="CEO",Value="CEO"},
+                                new SelectListItem { Text="Manager",Value="Manager"},
+                                new SelectListItem { Text="Trainer",Value="Trainer"},
+                                new SelectListItem { Text="Co-Ordinator",Value="Co-Ordinator"},
+                                new SelectListItem { Text="Interviewer",Value="Interviewer"}
+                                }, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>Status</b></label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                                { new SelectListItem{Text="--Select--", Value="0"},
+                                new SelectListItem{Text="Active", Value="True"},
+                                new SelectListItem{Text="InActive", Value="False"}
+                                }, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                               @* <div class="form-group row">
+                                    <asp:Label ID="lblother" CssClass="col-sm-2 col-form-label" runat="server" Text="Other:"></asp:Label>
+                                    <div class="col-sm-5 inputGroupContainer">
+                                        <div class="input-group">
+                                        </div>
+
+                                    </div>
+                                </div>*@
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group row">
+                              
+                                <div class="col-sm-5">
+                                     <input type="submit" class="btn btn-primary float-end" value="Submit">
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+              }
+
+            </div>
+        </div>
+    </section>
+    <!-- End -->
+
+
+</body>
+</html>
+
+
+

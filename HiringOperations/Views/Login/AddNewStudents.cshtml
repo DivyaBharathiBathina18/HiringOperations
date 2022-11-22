@@ -1,0 +1,372 @@
+﻿@using HiringOperations.Models
+@model StudentModel
+
+@{
+    ViewData["Title"] = "AdminHome";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="Styles/JobStyle.css" type="text/css" rel="Stylesheet" />
+    <link href="Styles/gridstyles.css" rel="Stylesheet" type="text/css" />
+    <link href="Styles/Calendar.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="ndate/datetimepicker_css.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <style type="text/css">
+        #calendarContainerOverride table {
+            width: 0px;
+            height: 0px;
+        }
+
+            #calendarContainerOverride table tr td {
+                padding: 0;
+                margin: 0;
+            }
+
+        #success_message {
+            display: none;
+        }
+
+        section.py-5 {
+            padding: 48px 0 !important;
+        }
+    </style>
+
+   
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+     
+</head>
+
+<body>
+    <section class="text-black">
+        <div class="container-fluid">
+            <div class="grid-container">
+                <div class="row">
+                    <div class="caption col-sm-5">
+                        <h6 class="page-title font-weight-bold">ADD STUDENT DETAILS</h6>
+                    </div>
+                </div>
+                <hr />
+                @using (Html.BeginForm("AddNewStudents", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div id="formgrid" class="formgrid">
+                        <div>
+
+                            <p><label><h4><u><b>Generic Information</b></u></h4></label></p>
+                           
+                            <div class="row">
+                                <div class="caption col-sm-6">
+
+                                    <div class="form-group row">
+                                       <label class="col-sm-3 col-form-label"><b>HallTicket<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @* <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-list"></i></span>*@
+                                                @Html.TextBoxFor(model => model.Hall_ticket_no, new { @class = "form-control", placeholder="Enter HallTicket No" })
+                                                @Html.ValidationMessageFor(model => model.Hall_ticket_no, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                      <label class="col-sm-3 col-form-label"><b>Student Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Name_of_the_student, new { @class = "form-control",placeholder="Enter Name" })
+                                                @Html.ValidationMessageFor(model => model.Name_of_the_student, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>EmailID<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Emailid, new { @class = "form-control",placeholder="Enter Emailid" })
+                                                @Html.ValidationMessageFor(model => model.Emailid, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>DOB<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.EditorFor(model => model.Dob, new { @class = "form-control", placeholder="Enter DOB" })
+                                                @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div class="form-group row">
+                                         <label class="col-sm-3 col-form-label"><b>Gender<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male-true"  })
+                                                @Html.Label("male-true", "Male")
+                                                @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female-true"})
+                                                @Html.Label("female-true", "Female")
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                       <label class="col-sm-3 col-form-label"><b>Phone No<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.PH_No, new { @class = "form-control",placeholder="Enter Phone no" })
+                                                @Html.ValidationMessageFor(model => model.PH_No, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                      <label class="col-sm-3 col-form-label"><b>Aadhar No<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Aadhar_no, new { @class = "form-control",placeholder="Enter Aadhar no" })
+                                                @Html.ValidationMessageFor(model => model.Aadhar_no, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <p><label><h4><u><b>Education Details</b></u></h4></label></p>
+                                    <div class="form-group row">
+                                       <label class="col-sm-3 col-form-label"><b>School Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.School_Name, new { @class = "form-control", placeholder="Enter SchoolName" })
+                                                @Html.ValidationMessageFor(model => model.School_Name,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>SSC Passedout Year<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.ssc_Year_of_Pass_out, new { @class = "form-control", placeholder="Enter SSC YOP" })
+                                                @Html.ValidationMessageFor(model => model.ssc_Year_of_Pass_out,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>SSC Aggregate<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Ssc_Aggregate, new { @class = "form-control", placeholder="Enter SSC Percentage" })
+                                                @Html.ValidationMessageFor(model => model.Ssc_Aggregate,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Intermediate College Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Junior_College_Name, new { @class = "form-control", placeholder="Enter Intermediate College Name" })
+                                                @Html.ValidationMessageFor(model => model.Junior_College_Name,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Intermediate YOP<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.inter_Year_of_Pass_out, new { @class = "form-control", placeholder="Enter Inter YOP" })
+                                                @Html.ValidationMessageFor(model => model.inter_Year_of_Pass_out,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Intermediate Aggregate<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.inter_Aggregate, new { @class = "form-control", placeholder="Enter Inter Percentage" })
+                                                @Html.ValidationMessageFor(model => model.inter_Aggregate,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Engineering College Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Engineering_College_Name, new { @class = "form-control", placeholder="Enter Engineering College Name" })
+                                                @Html.ValidationMessageFor(model => model.Engineering_College_Name,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Branch</b><span class="text-danger">*</span></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(model => model.Branch, new List<SelectListItem>
+                                            {
+                                            new SelectListItem { Text="--select--",Value="--select--"},
+                                            new SelectListItem { Text="CSE",Value="CSE"},
+                                            new SelectListItem { Text="MECH",Value="MECH"},
+                                            new SelectListItem { Text="ECE",Value="ECE"},
+                                            new SelectListItem { Text="EEE",Value="EEE"},
+                                            new SelectListItem { Text="CIVIL",Value="CIVIL"},
+                                            new SelectListItem { Text="IT",Value="IT"},
+                                            },
+                                            new
+                                            {
+                                            @class = "form-control"
+                                            })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Graduation YOP<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Btech_Year_of_Pass_out, new { @class = "form-control", placeholder="Enter Engineering YOP" })
+                                                @Html.ValidationMessageFor(model => model.Btech_Year_of_Pass_out,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Backlogs<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Total_backlogs, new { @class = "form-control", placeholder="Enter no of Backlogs" })
+                                                @Html.ValidationMessageFor(model => model.Total_backlogs,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Graduation Aggregate<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Graduation_Aggregate, new { @class = "form-control", placeholder="Enter Engineering Percentgae" })
+                                                @Html.ValidationMessageFor(model => model.Graduation_Aggregate,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="column">
+                                    <p><label><h4><u><b>Family Details</b></u></h4></label></p>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Father Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Fathers_name, new { @class = "form-control", placeholder="Enter FatherName" })
+                                                @Html.ValidationMessageFor(model => model.Fathers_name,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Father Occupation<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Fathers_occupation, new { @class = "form-control", placeholder="Enter Father Occupation" })
+                                                @Html.ValidationMessageFor(model => model.Fathers_occupation,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Permanent Adress<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Permanent_address, new { @class = "form-control", placeholder="Enter Adress" })
+                                                @Html.ValidationMessageFor(model => model.Permanent_address,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Present Adress<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Present_address, new { @class = "form-control", placeholder="Enter Address" })
+                                                @Html.ValidationMessageFor(model => model.Present_address,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Father Mobile No<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Fathers_Mobile_No, new { @class = "form-control", placeholder="Enter Father Mobileno" })
+                                                @Html.ValidationMessageFor(model => model.Fathers_Mobile_No,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Mother Name<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Mothers_Name, new { @class = "form-control", placeholder="Enter MotherName" })
+                                                @Html.ValidationMessageFor(model => model.Mothers_Name,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Mother Occupation<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                                @Html.TextBoxFor(model => model.Mothers_Occupation, new { @class = "form-control", placeholder="Enter Mother Occupation" })
+                                                @Html.ValidationMessageFor(model => model.Mothers_Occupation,"", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    @* <div class="form-group row">
+                                <asp:Label ID="lblother" CssClass="col-sm-2 col-form-label" runat="server" Text="Other:"></asp:Label>
+                                <div class="col-sm-5 inputGroupContainer">
+                                <div class="input-group">
+                                </div>
+
+                                </div>
+                                </div>*@
+                                    <p><label><h4><u><b>Upload Resume</b></u></h4></label></p>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"><b>Select File<span class="text-danger">*</span></b></label>
+                                        <div class="col-sm-5 inputGroupContainer">
+                                            <div class="input-group">
+                                               
+                                                <input type="file" name="PostedFiles" multiple />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+
+                                <div class="form-group row">
+                                  
+                                    <div class="col-sm-5">
+                                        <input type="submit" class="btn btn-primary float-end" value="Submit">
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+
+                                    </div>
+                                </div>
+                                
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        </div>
+    </section>
+    <!-- End -->
+
+
+</body>
+</html>

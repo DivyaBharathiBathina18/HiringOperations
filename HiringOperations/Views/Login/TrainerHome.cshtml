@@ -1,0 +1,121 @@
+﻿@using HiringOperations.Models;
+@model LoginViewModel
+@{
+    ViewData["Title"] = "TrainerHome";
+    Layout = "~/Views/Shared/TrainerLayout.cshtml";
+}
+<html>
+<head>
+    <link href="Revamp/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Revamp/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="Revamp/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        jQuery(function($) {
+            $('#fieldSetupGrid').DataTable({
+                "pageLength": 25
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Content Start -->
+    <section class="text-black">
+        <div class="container-fluid">
+            <div class="grid-container">
+                <div class="row">
+                    <div class="caption col-sm-7">
+                        <h6 class="page-title">DEPARTMENT'S DATA</h6>
+                        <asp:Label ID="lbl_error" runat="server" Text="Label" Visible="False" ForeColor="Red"></asp:Label>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary btn-style1-oval float-right" data-toggle="modal" data-target="#addFieldModal">+ Add Department</button>
+                    </div>
+                </div>
+                <hr />
+                <div id="formgrid" class="formgrid">
+
+                    <table class="table table-bordered table-striped dtables" style="width: 100%" id="fieldSetupGrid">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px; text-align: center">S.No</th>
+                                <th>
+                                    <span style="font-size: 15px">Department</span>
+                                </th>
+                                <th style="width: 5%">
+                                    <span style="font-size: 15px">Action</span>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tr>
+                            <td style="text-align: center">1</td>
+                            <td>
+                                CEO
+                            </td>
+                            <td>
+                                <center>
+                                    <input type="image" onclick="return false" title="Edit" data-toggle="modal" src="Revamp/images/EDITICON.png" style="height:20px;width:20px;">
+                                </center>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+                <br />
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="addFieldModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+
+
+                            <div class="modal-body">
+
+
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- End -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+

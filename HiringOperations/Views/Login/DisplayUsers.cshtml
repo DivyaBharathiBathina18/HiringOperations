@@ -1,0 +1,116 @@
+﻿@model IEnumerable<HiringOperations.Models.AddnewUserModel>
+
+
+@{
+    ViewData["Title"] = "DisplayUsers";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<html>
+    <body>
+    <!-- Content Start -->
+    <section class="text-black">
+        <div class="container-fluid">
+            <div class="grid-container">
+                <div class="row">
+                    <div class="caption col-sm-7">
+                      @*  <h4 class="page-title"><b>USER'S DATA</b></h4>*@
+                      
+                        <asp:Label ID="lbl_error" runat="server" Text="Label" Visible="False" ForeColor="Red"></asp:Label>
+                    </div>
+                     <div class="col-md-5">
+                      
+                        @Html.ActionLink("+Add Users","AddNewUsers","Login", null,
+                        new { @class="btn btn-primary btn-style1-oval float-right"})
+                    
+                    </div>
+                    @*<div class="col-md-5">
+                    <button type="button" class="btn btn-primary btn-style1-oval float-right" data-toggle="modal" data-target="#addFieldModal">+ Add Department</button>
+                    </div>*@
+                </div>
+                <hr />
+                <div id="formgrid" class="formgrid">
+                    <table class="table table-bordered table-striped dtables" style="width: 100%" id="fieldSetupGrid">
+                        
+                        <thead>
+                            <tr>
+                                    @* <th style="width: 20px; text-align: center">S.No</th>*@
+                                <th>
+                                    <span style="font-size: 15px">User Id</span>
+                                </th>
+                                <th>
+                                    <span style="font-size: 15px">First Name</span>
+                                </th>
+
+                                <th>
+                                    <span style="font-size: 15px">Last Name</span>
+                                </th>
+
+                                <th>
+                                    <span style="font-size: 15px">Emailid</span>
+                                </th>
+                                <th>
+                                    <span style="font-size: 15px">Password</span>
+                                </th>
+                                <th>
+                                    <span style="font-size: 15px">Gender </span>
+                                </th>
+
+                                <th>
+                                    <span style="font-size: 15px">DOB</span>
+                                </th>
+                                <th>
+                                    <span style="font-size: 15px">Role</span>
+                                </th>
+                                <th>
+                                    <span style="font-size: 15px">Status</span>
+                                </th>
+                                
+                                <th>
+                                    <span style="font-size: 15px">Action</span>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                    
+                                <td><center>@item.userid</center></td>
+                                <td><center>@item.FirstName</center></td>
+                                <td><center>@item.LastName</center></td>
+                                <td><center>@item.EmailId</center></td>
+                                <td><center>@item.Password</center></td>
+                                <td><center>@item.Gender</center></td>
+                                <td><center>@item.DOB</center></td>
+                                <td><center>@item.Role</center></td>
+                                <td><center>@item.Status</center></td>
+                               
+                               
+                                <td style="font-size:15px" align="center">
+                                    <center >
+                                           
+                                   <a asp-action="Edit" asp-route-userid="@item.userid"><i class="text-info"><i class="fa fa-edit fa-lg ;"></i></a>|
+
+                                    <a asp-action="Delete" asp-route-userid="@item.userid"> <i class=" text-danger ml-1" onclick="return confirm('Are you sure to delete this record..?')"><i class="fa fa-trash fa-lg "></i></i>                                   </a>
+
+                                        </center>
+                                </td>
+                                
+                             
+                            </tr>
+                        
+                            }
+                               </tbody> 
+                    </table>
+                </div>
+             </div>
+         </div>
+     </section>
+    </body>
+ </html>
+
+
